@@ -31,12 +31,26 @@ const FloatingButton = ({ children, ...props }) => {
 
 const Wrapper = styled.div`
   position: fixed;
-  right: 30px;
-  top: 20%;
   z-index: 999;
   display: flex;
-  flex-direction: column;
   gap: 20px;
+
+  /* 🖥 Desktop Layout */
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+
+  /* 📱 Mobile Layout */
+  @media (max-width: 768px) {
+    bottom: 20px;
+    top: auto;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: 12px;
+  }
 
   button {
     padding: 10px 18px;
@@ -47,8 +61,8 @@ const Wrapper = styled.div`
     );
     color: #e6c27a;
     border: 1px solid rgba(181, 127, 47, 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     cursor: pointer;
     transition: all 0.3s ease;
     letter-spacing: 2px;
@@ -57,13 +71,19 @@ const Wrapper = styled.div`
     position: relative;
     overflow: hidden;
 
-    /* subtle inner gloss */
     box-shadow:
       inset 0 0 10px rgba(181, 127, 47, 0.3),
       0 0 15px rgba(181, 127, 47, 0.2);
   }
 
-  /* Gloss shine animation */
+  /* Smaller buttons on mobile */
+  @media (max-width: 768px) {
+    button {
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+  }
+
   button::before {
     content: "";
     position: absolute;
@@ -96,7 +116,14 @@ const Wrapper = styled.div`
       0 0 25px rgba(181, 127, 47, 0.6);
     transform: translateX(-5px);
   }
+
+  @media (max-width: 768px) {
+    button:hover {
+      transform: scale(1.05);
+    }
+  }
 `;
+
 
 
 export default FloatingMenu;
