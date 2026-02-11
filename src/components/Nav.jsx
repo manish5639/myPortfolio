@@ -31,28 +31,72 @@ const FloatingButton = ({ children, ...props }) => {
 
 const Wrapper = styled.div`
   position: fixed;
-  right: 40px;
-  top: 15%;
-  transform: translateY(-50%);
+  right: 30px;
+  top: 20%;
   z-index: 999;
   display: flex;
   flex-direction: column;
   gap: 20px;
 
   button {
-    padding: 2px 8px;
-    background:#b57f2f;
-    color: #000;
-    border: 1px solid #222;
-    backdrop-filter: blur(8px);
+    padding: 10px 18px;
+    background: linear-gradient(
+      145deg,
+      rgba(181, 127, 47, 0.25),
+      rgba(181, 127, 47, 0.15)
+    );
+    color: #e6c27a;
+    border: 1px solid rgba(181, 127, 47, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     letter-spacing: 2px;
-    border-radius: 30px;
+    border-radius: 40px;
+    font-weight: 600;
     position: relative;
+    overflow: hidden;
+
+    /* subtle inner gloss */
+    box-shadow:
+      inset 0 0 10px rgba(181, 127, 47, 0.3),
+      0 0 15px rgba(181, 127, 47, 0.2);
   }
 
-  
+  /* Gloss shine animation */
+  button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: 0.6s;
+  }
+
+  button:hover::before {
+    left: 150%;
+  }
+
+  button:hover {
+    background: linear-gradient(
+      145deg,
+      rgba(181, 127, 47, 0.35),
+      rgba(181, 127, 47, 0.25)
+    );
+    color: #fff;
+    box-shadow:
+      inset 0 0 15px rgba(181, 127, 47, 0.5),
+      0 0 25px rgba(181, 127, 47, 0.6);
+    transform: translateX(-5px);
+  }
 `;
+
 
 export default FloatingMenu;
