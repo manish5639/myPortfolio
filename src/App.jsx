@@ -1,23 +1,42 @@
-import React from "react";
-import Nav from "./components/Nav";
-import Home from "./pages/home";
+import React, { useState } from "react";
 import bg from "./assets/bg.png";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import FloatingMenu from "./components/Nav";
 
 const App = () => {
-  return (
-    <div className="relative min-h-screen overflow-hidden">
+  const [page, setPage] = useState("home");
 
+  return (
+    <>
+      {/* 🔥 FIXED GLOBAL BACKGROUND */}
       <div
-        className="absolute inset-0 bg-cover bg-center -z-10"
-        style={{ backgroundImage: `url(${bg})` }}
+        style={{
+          position: "fixed",
+          inset: 0,
+          backgroundImage: `url(${bg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          zIndex: -10,
+        }}
       />
 
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm -z-10" />
+      {/* Optional dark overlay */}
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          background: "rgba(0,0,0,0.7)",
+          zIndex: -9,
+        }}
+      />
 
-      <Nav />
-      <Home />
+      <FloatingMenu setPage={setPage} />
 
-    </div>
+      {page === "home" && <Home />}
+      {page === "about" && <About />}
+    </>
   );
 };
 

@@ -1,10 +1,12 @@
+import { label } from "framer-motion/client";
 import React from "react";
 import styled from "styled-components";
 
-const FloatingMenu = () => {
+const FloatingMenu = ({setPage}) => {
 
   const buttons = [
-    { label: "CONTACT", onClick: () => console.log("Contact") },
+    {label: "Home", onClick: ()=> setPage("home")},
+    { label: "About", onClick: () => setPage("about") },
     { label: "RESUME", onClick: () => console.log("Resume") },
     { label: "GITHUB", onClick: () => console.log("Github") },
   ];
